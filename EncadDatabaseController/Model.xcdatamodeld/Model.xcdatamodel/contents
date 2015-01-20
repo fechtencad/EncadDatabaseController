@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Schulung" representedClassName="Schulung" syncable="YES">
+        <attribute name="dauer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zusatz" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Schulungstermin" representedClassName="Schulungstermin" syncable="YES">
+        <attribute name="datum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dauer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="orts_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="schulungs_name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Veranstaltung" representedClassName="Veranstaltung" syncable="YES">
+        <attribute name="anfangs_datum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="end_datum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ort" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uhrzeit" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Webinar" representedClassName="Webinar" syncable="YES">
+        <attribute name="anfangs_datum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="end_datum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uhrzeit" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Schulung" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Schulungstermin" positionX="-63" positionY="9" width="128" height="120"/>
+        <element name="Veranstaltung" positionX="-63" positionY="36" width="128" height="120"/>
+        <element name="Webinar" positionX="-54" positionY="54" width="128" height="103"/>
+    </elements>
+</model>
