@@ -66,7 +66,7 @@
 		3A7BF2821A67DA19004F65F5 /* EventCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCreator.h; sourceTree = "<group>"; };
 		3A7BF2831A67DA19004F65F5 /* EventCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCreator.m; sourceTree = "<group>"; };
 		3AA386611A6E5FBD0092375C /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
-		3AA7B5F51A5E717900F11E71 /* encad-DBC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "encad-DBC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AA7B5F51A5E717900F11E71 /* encad-DBC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "encad-DBC.app"; path = "/Users/fechbern/ShareFile/Eigene Dateien und Ordner/Eigene Dateien und Ordner/EncadDatabaseController/build/Debug-iphoneos/encad-DBC.app"; sourceTree = "<absolute>"; };
 		3AA7B5F91A5E717900F11E71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AA7B5FA1A5E717900F11E71 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3AA7B5FC1A5E717900F11E71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		3AA7B6061A5E717900F11E71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3AA7B6081A5E717900F11E71 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3AA7B60B1A5E717900F11E71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		3AA7B6111A5E717900F11E71 /* EncadDatabaseControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EncadDatabaseControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AA7B6111A5E717900F11E71 /* EncadDatabaseControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = EncadDatabaseControllerTests.xctest; path = "/Users/fechbern/ShareFile/Eigene Dateien und Ordner/Eigene Dateien und Ordner/EncadDatabaseController/build/Debug-iphoneos/EncadDatabaseControllerTests.xctest"; sourceTree = "<absolute>"; };
 		3AA7B6161A5E717900F11E71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AA7B6171A5E717900F11E71 /* EncadDatabaseControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EncadDatabaseControllerTests.m; sourceTree = "<group>"; };
 		3AA7B6251A5E734500F11E71 /* TaskSelectorTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskSelectorTable.h; sourceTree = "<group>"; };
@@ -119,17 +119,7 @@
 				3AA7B6361A5EAB5600F11E71 /* CoreData.framework */,
 				3AA7B5F71A5E717900F11E71 /* EncadDatabaseController */,
 				3AA7B6141A5E717900F11E71 /* EncadDatabaseControllerTests */,
-				3AA7B5F61A5E717900F11E71 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		3AA7B5F61A5E717900F11E71 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3AA7B5F51A5E717900F11E71 /* encad-DBC.app */,
-				3AA7B6111A5E717900F11E71 /* EncadDatabaseControllerTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3AA7B5F71A5E717900F11E71 /* EncadDatabaseController */ = {
@@ -292,7 +282,7 @@
 				Base,
 			);
 			mainGroup = 3AA7B5EC1A5E717900F11E71;
-			productRefGroup = 3AA7B5F61A5E717900F11E71 /* Products */;
+			productRefGroup = 3AA7B5EC1A5E717900F11E71;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
