@@ -169,7 +169,7 @@
 
 -(void)didSelectTimeFromTimePicker:(UIDatePicker*)datePicker{
     NSDateFormatter *theFormatter = [[NSDateFormatter alloc]init];
-    [theFormatter setDateFormat:@"HH:MM"];
+    [theFormatter setDateFormat:@"HH:mm"];
     NSDate *time = [datePicker date];
     NSString *timeString = [NSString stringWithFormat:@"%@ Uhr",[theFormatter stringFromDate:time]];
     [self.timeTF setText:timeString];
