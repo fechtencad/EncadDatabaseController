@@ -46,7 +46,7 @@
 
 -(void)runSchulungScripts{
     NSString *jsonString = [[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"] stringByAppendingString:@"audits.json"];
-    NSString *entityName = @"Webinar";
+    NSString *entityName = @"Schulung";
     
     [self initDataDownloadForURLString:jsonString forEntityName:entityName checkVersion:YES];
 }
