@@ -245,16 +245,19 @@
     NSURL *url = [[NSURL alloc]initWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
     
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
-    NSURLConnection *theConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    NSLog(@"connection: %@",theConnection);
+    NSURLResponse *response;
+    NSError *error;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-    if(!theConnection){
+    if(error){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Dankankeintrag fehlgeschlagen" message:@"Der Daten-Upload ist fehlgeschlagen! Bitte informieren Sie den Administrator dieser App!" preferredStyle:UIAlertControllerStyleAlert];
         
         [alert addAction:dismiss];
         [self presentViewController:alert animated:YES completion:nil];
     }
     else{
+        NSLog(@"connection: %@",data);
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Dankankeintrag erfolgreich" message:@"Der Daten-Upload war erfolgreich!" preferredStyle:UIAlertControllerStyleAlert];
         
         [alert addAction:dismiss];
