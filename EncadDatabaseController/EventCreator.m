@@ -350,7 +350,7 @@
     NSString *formatedTimeString = [NSString stringWithFormat:@"%@ %@",self.timeTF.text, self.timeAdditionTF.text];
     
     
-    NSString *urlString =[[NSString alloc]initWithFormat:@"%@insertEventData.php?name=%@&ort=%@&anfangs_datum=%@&end_datum=%@&uhrzeit=%@&type=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"] ,self.nameTF.text,self.locationTF.text,formatedStartDate,formatedEndDate,formatedTimeString,self.entityName];
+    NSString *urlString =[[NSString alloc]initWithFormat:@"%@insertEventData.php?name=%@&ort=%@&anfangs_datum=%@&end_datum=%@&uhrzeit=%@&type=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"] ,self.nameTF.text, self.locationTF.text, formatedStartDate,formatedEndDate,formatedTimeString,self.entityName];
     NSURL *url = [[NSURL alloc]initWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
     
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
