@@ -2,7 +2,7 @@
 //  Webinar.h
 //  EncadDatabaseController
 //
-//  Created by Bernd Fecht (encad-consulting.de) on 15.01.15.
+//  Created by Bernd Fecht (encad-consulting.de) on 19.02.15.
 //  Copyright (c) 2015 Bernd Fecht (encad-consulting.de). All rights reserved.
 //
 
@@ -13,8 +13,9 @@
 @interface Webinar : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * anfangs_datum;
-@property (nonatomic, retain) NSString * end_datum;
-@property (nonatomic, retain) NSString * uhrzeit;
+@property (nonatomic, retain) NSString * datum;
+@property (nonatomic, retain) NSString * start_zeit;
+@property (nonatomic, retain) NSString * end_zeit;
+@property (nonatomic, retain) NSString * link;
 
 @end

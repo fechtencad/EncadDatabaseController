@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) NSSortDescriptor *theDescriptor;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
+@property (nonatomic, strong) NSString *entityName;
 
 @end
 
@@ -28,6 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //init core data fetch
+    _entityName=@"Veranstaltung";
     _delegate = (AppDelegate*) [[UIApplication sharedApplication]delegate];
     self.theDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"anfangs_datum" ascending:YES];
     
@@ -256,12 +259,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if([segue.identifier isEqualToString:@"createEventSegue"]){
-        EventCreator *creator = [segue destinationViewController];
-        creator.entityName=self.entityName;
-        creator.eventController = self;
-    }
-    
 }
 
 

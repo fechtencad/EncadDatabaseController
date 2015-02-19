@@ -12,6 +12,6 @@
 
 -(void)reloadData;
 
-@property (nonatomic, strong) NSString *entityName;
+
 
 @end

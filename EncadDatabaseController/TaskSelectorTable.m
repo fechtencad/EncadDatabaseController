@@ -183,14 +183,6 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"webinarSegue"]){
-        Events *eventContoller = [segue destinationViewController];
-        eventContoller.entityName=@"Webinar";
-    }
-    if([segue.identifier isEqualToString:@"eventSegue"]){
-        Events *eventContoller = [segue destinationViewController];
-        eventContoller.entityName=@"Veranstaltung";
-    }
 }
 
 

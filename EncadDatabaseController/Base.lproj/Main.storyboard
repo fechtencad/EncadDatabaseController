@@ -321,8 +321,8 @@
                         <outlet property="serverPfadTF" destination="S2r-Fb-2ea" id="Ym9-O9-dJw"/>
                         <segue destination="YvN-we-MDf" kind="show" identifier="auditionSegue" id="Eut-G2-8wj"/>
                         <segue destination="m3C-cl-zHO" kind="show" identifier="eventSegue" id="hCY-G3-Uov"/>
-                        <segue destination="m3C-cl-zHO" kind="show" identifier="webinarSegue" id="mA4-N1-sfK"/>
                         <segue destination="ge0-h2-2T2" kind="show" identifier="webSegue" id="RYQ-Zh-CId"/>
+                        <segue destination="73X-Uh-buC" kind="show" identifier="webinarSegue" id="fKD-oY-6ad"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1oP-ml-Ke4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -484,7 +484,95 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wM7-is-Q6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1145" y="577"/>
+            <point key="canvasLocation" x="415" y="585"/>
+        </scene>
+        <!--Webinars-->
+        <scene sceneID="UdW-wy-aaU">
+            <objects>
+                <tableViewController id="73X-Uh-buC" customClass="Webinars" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="152" sectionHeaderHeight="22" sectionFooterHeight="22" id="0Wt-Gx-Kes">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="webinarCell" rowHeight="152" id="E8Z-Ks-Ni4" customClass="WebinarCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E8Z-Ks-Ni4" id="ruu-PE-kxf">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7c-yr-gPu">
+                                            <rect key="frame" x="8" y="8" width="584" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="wIb-4B-qRS"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Gb-Id-tAR">
+                                            <rect key="frame" x="8" y="37" width="584" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="6sV-D9-KwH"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endzeit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUi-4n-3GR">
+                                            <rect key="frame" x="8" y="95" width="584" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="btQ-OP-LQB"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Link" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ob-Xi-z22">
+                                            <rect key="frame" x="8" y="124" width="584" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Startzeit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eoP-fO-lig">
+                                            <rect key="frame" x="8" y="66" width="584" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="DUE-Og-l36"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4Ob-Xi-z22" firstAttribute="leading" secondItem="UUi-4n-3GR" secondAttribute="leading" id="2fI-pf-GXN"/>
+                                        <constraint firstItem="eoP-fO-lig" firstAttribute="leading" secondItem="2Gb-Id-tAR" secondAttribute="leading" id="3P4-u0-FCS"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="4Ob-Xi-z22" secondAttribute="bottom" constant="-1.5" id="A58-ey-rxa"/>
+                                        <constraint firstItem="2Gb-Id-tAR" firstAttribute="top" secondItem="l7c-yr-gPu" secondAttribute="bottom" constant="8" symbolic="YES" id="Bsv-Zn-9M8"/>
+                                        <constraint firstItem="UUi-4n-3GR" firstAttribute="trailing" secondItem="4Ob-Xi-z22" secondAttribute="trailing" id="FaB-xL-BnX"/>
+                                        <constraint firstItem="eoP-fO-lig" firstAttribute="trailing" secondItem="UUi-4n-3GR" secondAttribute="trailing" id="Fmw-Xh-fBi"/>
+                                        <constraint firstItem="eoP-fO-lig" firstAttribute="top" secondItem="2Gb-Id-tAR" secondAttribute="bottom" constant="8" symbolic="YES" id="G3X-sf-zRQ"/>
+                                        <constraint firstItem="eoP-fO-lig" firstAttribute="leading" secondItem="UUi-4n-3GR" secondAttribute="leading" id="PHe-dG-z53"/>
+                                        <constraint firstItem="2Gb-Id-tAR" firstAttribute="trailing" secondItem="l7c-yr-gPu" secondAttribute="trailing" id="QnE-M5-08q"/>
+                                        <constraint firstItem="UUi-4n-3GR" firstAttribute="top" secondItem="eoP-fO-lig" secondAttribute="bottom" constant="8" symbolic="YES" id="RDr-aZ-iXG"/>
+                                        <constraint firstItem="4Ob-Xi-z22" firstAttribute="top" secondItem="UUi-4n-3GR" secondAttribute="bottom" constant="8" symbolic="YES" id="WVf-09-ABj"/>
+                                        <constraint firstItem="eoP-fO-lig" firstAttribute="trailing" secondItem="ruu-PE-kxf" secondAttribute="trailingMargin" id="aEO-Yh-Lai"/>
+                                        <constraint firstItem="eoP-fO-lig" firstAttribute="leading" secondItem="ruu-PE-kxf" secondAttribute="leadingMargin" id="bzZ-IK-bvU"/>
+                                        <constraint firstItem="l7c-yr-gPu" firstAttribute="leading" secondItem="2Gb-Id-tAR" secondAttribute="leading" id="fNQ-Px-uDf"/>
+                                        <constraint firstItem="l7c-yr-gPu" firstAttribute="top" secondItem="ruu-PE-kxf" secondAttribute="topMargin" id="o54-BN-uTT"/>
+                                        <constraint firstItem="eoP-fO-lig" firstAttribute="trailing" secondItem="2Gb-Id-tAR" secondAttribute="trailing" id="pQe-zt-PRK"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="73X-Uh-buC" id="hGl-MW-UsZ"/>
+                            <outlet property="delegate" destination="73X-Uh-buC" id="E9h-Ot-e1w"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oCh-Jl-4gs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1151" y="565"/>
         </scene>
         <!--Event Creator-->
         <scene sceneID="UVh-e5-ALf">
@@ -692,7 +780,4 @@
     <resources>
         <image name="gear.png" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="mA4-N1-sfK"/>
-    </inferredMetricsTieBreakers>
 </document>

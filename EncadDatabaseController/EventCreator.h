@@ -11,8 +11,6 @@
 
 @interface EventCreator : UIViewController<UITextFieldDelegate>
 
-@property (nonatomic, strong) NSString *entityName;
-
 @property (nonatomic, strong) Events *eventController;
 
 @end

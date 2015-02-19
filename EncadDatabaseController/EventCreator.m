@@ -10,7 +10,6 @@
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
 #import "Veranstaltung.h"
-#import "Webinar.h"
 
 @interface EventCreator ()<NSFetchedResultsControllerDelegate>{
     AppDelegate *_delegate;
@@ -27,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 @property (nonatomic, strong) NSSortDescriptor *theDescriptor;
+@property (nonatomic, strong) NSString *entityName;
 @property (nonatomic, strong) UIDatePicker *startDatePicker;
 @property (nonatomic, strong) UIDatePicker *endDatePicker;
 @property (nonatomic, strong) UIDatePicker *timePicker;
@@ -58,6 +58,7 @@
     
     
     //Get Database entrys
+    _entityName=@"Veranstaltung";
     _delegate = (AppDelegate*) [[UIApplication sharedApplication]delegate];
     self.theDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     
@@ -94,9 +95,6 @@
     //set BOOl Flag
     self.nameIsValid=false;
     
-    //Hide when fields are not Required
-    [self hideFieldThatAreNotRequired];
-    
     //Activity Indicator settings
     [self.activityIndicator setHidden:YES];
     [self.activityIndicator setColor:[UIColor purpleColor]];
@@ -109,16 +107,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)hideFieldThatAreNotRequired{
-    if([self.entityName isEqualToString:@"Webinar"]){
-        self.locationTF.textColor=[UIColor grayColor];
-        [self.locationTF setPlaceholder:@"Für Webinare nicht benötigt!"];
-        [self.locationTF setUserInteractionEnabled:NO];
-        self.locationLabel.text=@"Ort: (Bei Webinar nicht benötigt)";
-        self.locationLabel.textColor=[UIColor grayColor];
-    }
 }
 
 -(void)initCoreDataFetch{
@@ -192,14 +180,6 @@
         for(Veranstaltung *event in fetchedData){
             if([event.name isEqualToString:self.nameTF.text]){
                 [self showWrongNameAlert];
-                self.nameTF.backgroundColor=[UIColor redColor];
-                return false;
-            }
-        }
-    }
-    if([self.entityName isEqualToString:@"Webinar"]){
-        for(Webinar *event in fetchedData){
-            if([event.name isEqualToString:self.nameTF.text]){
                 self.nameTF.backgroundColor=[UIColor redColor];
                 return false;
             }
