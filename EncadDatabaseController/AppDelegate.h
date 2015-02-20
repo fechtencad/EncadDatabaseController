@@ -15,15 +15,17 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 
--(void)runScriptOperations;
+-(void)runScriptOperationsWithWait;
 
--(void)runSchulungScripts;
+-(void)runSchulungScriptsWithWait;
 
--(void)runSchulungsterminScripts;
+-(void)runSchulungsterminScriptsWithWait;
 
--(void)runWebinarScripts;
+-(void)runWebinarScriptsWithWait;
 
--(void)runVeranstaltungScripts;
+-(void)runVeranstaltungScriptsWithWait;
+
+-(BOOL)checkForNewFileVersionOnServerByURL:(NSString*)inURL withEntityName:(NSString*)name;
 
 @end
 

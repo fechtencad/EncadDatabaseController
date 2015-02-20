@@ -23,12 +23,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.navigationItem.title=@"encad-akademie.de";
+    
+    // set title
+    self.navigationItem.title=_siteName;
     
     //UIWebView settings
-    NSURL *url = [NSURL URLWithString:@"http://www.encad-akademie.de"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLRequest *request = [NSURLRequest requestWithURL:_loadURL];
     [self.webView loadRequest:request];
     
     //Activity Indicator settings

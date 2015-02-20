@@ -135,8 +135,7 @@
 }
 
 -(void)reloadData{
-    [_delegate runWebinarScripts];
-    [_delegate runVeranstaltungScripts];
+    [_delegate runVeranstaltungScriptsWithWait];
     [self initCoreDataFetch];
     [self.tableView reloadData];
     // End the refreshing
@@ -259,6 +258,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    EventCreator *vc = [segue destinationViewController];
+    vc.eventController=self;
 }
 
 

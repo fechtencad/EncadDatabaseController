@@ -136,7 +136,7 @@
 }
 
 -(void)reloadData{
-    [_delegate runSchulungsterminScripts];
+    [_delegate runSchulungsterminScriptsWithWait];
     
     [self initCoreDataFetch];
     [self.tableView reloadData];

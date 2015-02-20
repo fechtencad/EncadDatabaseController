@@ -10,4 +10,8 @@
 
 @interface EncadAkademie : UIViewController
 
+@property (nonatomic, strong) NSURL *loadURL;
+
+@property (nonatomic, strong) NSString *siteName;
+
 @end

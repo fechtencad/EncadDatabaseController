@@ -234,7 +234,7 @@
         self.nameIsValid = [self checkIfNameIsUsedAndColorIfNot];
     }
     if(self.selectedEndDate!=nil && self.selectedStartDate!=nil){
-        if(![[self.selectedStartDate laterDate:self.selectedEndDate]isEqualToDate:self.selectedEndDate]){
+        if((![[self.selectedStartDate laterDate:self.selectedEndDate]isEqualToDate:self.selectedEndDate]) || self.selectedStartDate==self.selectedEndDate){
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Falsches Datum" message:@"Das Startdatum darf nicht hinter dem Enddatum liegen! Es liegt ein Fehler in der Eingabe vor - bitte berichtigen!" preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
@@ -338,7 +338,7 @@
     NSURLResponse *response;
     NSError *error;
     
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
     if(error){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Dankankeintrag fehlgeschlagen" message:@"Der Daten-Upload ist fehlgeschlagen! Bitte informieren Sie den Administrator dieser App!" preferredStyle:UIAlertControllerStyleAlert];
@@ -347,7 +347,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     else{
-        NSLog(@"connection data: %@",data);
+        NSLog(@"Created entity for URL-Request: %@",urlString);
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Dankankeintrag erfolgreich" message:@"Der Daten-Upload war erfolgreich!" preferredStyle:UIAlertControllerStyleAlert];
         
         [alert addAction:dismiss];

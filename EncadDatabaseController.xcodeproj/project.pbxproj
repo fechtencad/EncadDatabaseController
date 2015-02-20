@@ -11,6 +11,7 @@
 		3A4A660D1A6D65C2006D7097 /* launch1136blur.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4A660C1A6D65C2006D7097 /* launch1136blur.png */; };
 		3A4A660F1A6D663C006D7097 /* launch1136blurbot.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4A660E1A6D663C006D7097 /* launch1136blurbot.png */; };
 		3A4A66111A6D66FF006D7097 /* launch2208.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4A66101A6D66FF006D7097 /* launch2208.png */; };
+		3A4F4A1C1A972F2300ECAD30 /* WebinarCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4F4A1B1A972F2300ECAD30 /* WebinarCreator.m */; };
 		3A64E7861A963BEE0007F79E /* Webinar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E7851A963BEE0007F79E /* Webinar.m */; };
 		3A64E7891A9640080007F79E /* Webinars.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E7881A9640080007F79E /* Webinars.m */; };
 		3A64E78C1A96401E0007F79E /* WebinarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E78B1A96401E0007F79E /* WebinarCell.m */; };
@@ -53,6 +54,8 @@
 		3A4A660C1A6D65C2006D7097 /* launch1136blur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch1136blur.png; sourceTree = "<group>"; };
 		3A4A660E1A6D663C006D7097 /* launch1136blurbot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch1136blurbot.png; sourceTree = "<group>"; };
 		3A4A66101A6D66FF006D7097 /* launch2208.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch2208.png; sourceTree = "<group>"; };
+		3A4F4A1A1A972F2300ECAD30 /* WebinarCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebinarCreator.h; sourceTree = "<group>"; };
+		3A4F4A1B1A972F2300ECAD30 /* WebinarCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebinarCreator.m; sourceTree = "<group>"; };
 		3A63B93C1A95E30D00DEC141 /* encad-DBC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "encad-DBC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A63B93D1A95E30D00DEC141 /* EncadDatabaseControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EncadDatabaseControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A64E7841A963BEE0007F79E /* Webinar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Webinar.h; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				3A7BF2831A67DA19004F65F5 /* EventCreator.m */,
 				3A4A66091A6D553F006D7097 /* EncadAkademie.h */,
 				3A4A660A1A6D553F006D7097 /* EncadAkademie.m */,
+				3A4F4A1A1A972F2300ECAD30 /* WebinarCreator.h */,
+				3A4F4A1B1A972F2300ECAD30 /* WebinarCreator.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				3A64E78C1A96401E0007F79E /* WebinarCell.m in Sources */,
 				3AA7B62E1A5E94CF00F11E71 /* AuditionCreator.m in Sources */,
 				3A7BF2811A67C5AB004F65F5 /* EventCell.m in Sources */,
+				3A4F4A1C1A972F2300ECAD30 /* WebinarCreator.m in Sources */,
 				3A7BF2741A67BE8D004F65F5 /* Events.m in Sources */,
 				3A64E7861A963BEE0007F79E /* Webinar.m in Sources */,
 				3A7741051A64234500F0EFAC /* Auditions.m in Sources */,

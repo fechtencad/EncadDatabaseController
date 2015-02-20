@@ -10,6 +10,7 @@
 #import "TaskCell.h"
 #import "Events.h"
 #import "AppDelegate.h"
+#import "EncadAkademie.h"
 
 @interface TaskSelectorTable ()<UITableViewDelegate, UITableViewDataSource>{
     AppDelegate *_delegate;
@@ -88,7 +89,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:serverPathString forKey:@"serverPath"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [self setServerPfadTFText];
-            [_delegate runScriptOperations];
+            [_delegate runScriptOperationsWithWait];
             
             [[NSNotificationCenter defaultCenter] removeObserver:self
                                                             name:UITextFieldTextDidChangeNotification
@@ -169,7 +170,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:serverPathString forKey:@"serverPath"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [self setServerPfadTFText];
-            [_delegate runScriptOperations];
+            [_delegate runScriptOperationsWithWait];
             
             [[NSNotificationCenter defaultCenter] removeObserver:self
                                                             name:UITextFieldTextDidChangeNotification
@@ -183,6 +184,11 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier]isEqualToString:@"webSegue"]){
+        EncadAkademie *vc = [segue destinationViewController];
+        vc.loadURL=[NSURL URLWithString:@"http://www.encad-akademie.de"];
+        vc.siteName=@"www.encad-akademie.de";
+    }
 }
 
 

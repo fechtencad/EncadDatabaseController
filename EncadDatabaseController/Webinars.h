@@ -10,4 +10,6 @@
 
 @interface Webinars : UITableViewController
 
+-(void)reloadData;
+
 @end
