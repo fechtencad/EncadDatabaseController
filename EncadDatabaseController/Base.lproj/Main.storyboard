@@ -361,7 +361,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AnfangsDatum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJG-XG-8OQ">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AnfangsDatum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GJG-XG-8OQ">
                                             <rect key="frame" x="8" y="36" width="584" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -406,7 +406,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qJT-oo-rvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1145" y="-231"/>
+            <point key="canvasLocation" x="1135" y="-231"/>
         </scene>
         <!--Encad Akademie-->
         <scene sceneID="oU3-jb-AOk">
@@ -592,7 +592,7 @@
         <!--Event Creator-->
         <scene sceneID="UVh-e5-ALf">
             <objects>
-                <viewController id="XMl-sV-yds" customClass="EventCreator" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventCreator" id="XMl-sV-yds" customClass="EventCreator" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cg8-KV-pOM"/>
                         <viewControllerLayoutGuide type="bottom" id="IF5-bu-3YF"/>

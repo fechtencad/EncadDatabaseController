@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Events.h"
+#import "Veranstaltung.h"
 
 @interface EventCreator : UIViewController<UITextFieldDelegate>
 
 @property (nonatomic, strong) Events *eventController;
+
+@property (nonatomic,strong) Veranstaltung *event;
 
 @end

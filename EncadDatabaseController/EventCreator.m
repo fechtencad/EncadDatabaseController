@@ -34,7 +34,7 @@
 @property (nonatomic, strong) NSDate *selectedEndDate;
 @property (nonatomic, strong) UITextField *activeTextField;
 @property BOOL nameIsValid;
-
+@property BOOL editMode;
 
 - (IBAction)pressedCancelButton:(id)sender;
 - (IBAction)pressedDoneButton:(id)sender;
@@ -94,6 +94,7 @@
     
     //set BOOl Flag
     self.nameIsValid=false;
+    self.editMode=false;
     
     //Activity Indicator settings
     [self.activityIndicator setHidden:YES];
@@ -102,7 +103,49 @@
     //title
     self.navigationItem.title=self.entityName;
     
+    //check for edit
+    [self checkForEditModeAndFillTFs];
+    
 }
+
+
+-(void)checkForEditModeAndFillTFs{
+    if(_event){
+        _editMode=true;
+        self.nameTF.text=_event.name;
+        self.startDateTF.text= [self convertDateString:_event.anfangs_datum];
+        self.endDateTF.text= [self convertDateString:_event.end_datum];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *startDate = [formatter dateFromString:_event.anfangs_datum];
+        [_startDatePicker setDate:startDate];
+        NSDate *endDate = [formatter dateFromString:_event.end_datum];
+        [_endDatePicker setDate:endDate];
+        
+        NSArray *stringComponents = [_event.uhrzeit componentsSeparatedByString:@" "];
+        
+        _timeTF.text=[NSString stringWithFormat:@"%@ %@",stringComponents[0],stringComponents[1]];
+        
+        _timeAdditionTF.text=[[_event.uhrzeit componentsSeparatedByString:@"Uhr"]objectAtIndex:1];
+        
+        _locationTF.text=_event.ort;
+        
+        NSString *timeString = [[_event.uhrzeit componentsSeparatedByString:@" "] objectAtIndex:0];
+        [formatter setDateFormat:@"HH:mm"];
+        
+        [_timePicker setDate:[formatter dateFromString:timeString]];
+
+    }
+}
+
+-(NSString*)convertDateString:(NSString*)dateString{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *convertedDate= [formatter dateFromString:dateString];
+    [formatter setDateFormat:@"EE, dd. MMMM yyyy"];
+    return [formatter stringFromDate:convertedDate];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -233,17 +276,6 @@
     if(textField == self.nameTF){
         self.nameIsValid = [self checkIfNameIsUsedAndColorIfNot];
     }
-    if(self.selectedEndDate!=nil && self.selectedStartDate!=nil){
-        if((![[self.selectedStartDate laterDate:self.selectedEndDate]isEqualToDate:self.selectedEndDate]) || self.selectedStartDate==self.selectedEndDate){
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Falsches Datum" message:@"Das Startdatum darf nicht hinter dem Enddatum liegen! Es liegt ein Fehler in der Eingabe vor - bitte berichtigen!" preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-            
-            [alert addAction:cancelAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            self.endDateTF.text=@"";
-        }
-    }
 }
 
 /*
@@ -270,7 +302,7 @@
 - (IBAction)checkInserts:(id)sender {
     [self.activityIndicator setHidden:NO];
     [self.activityIndicator startAnimating];
-    if(self.nameIsValid){
+    if(self.nameIsValid || self.editMode){
         if(self.nameTF.text.length && self.startDateTF.text.length && self.endDateTF.text.length && self.timeTF.text.length > 0){
             NSString *message = [NSString stringWithFormat:@"\nVeranstaltungsname: %@\nStart-Datum: %@\nEnd-Datum: %@\nUhrzeit: %@ Uhr\nUhrzeit-Anmerkung: %@\nStadt: %@\n\n",self.nameTF.text,self.startDateTF.text,self.endDateTF.text,self.timeTF.text,self.timeAdditionTF.text,self.locationTF.text];
               message = [message stringByAppendingString:@"Stimmen Ihre Angaben überein? Wenn ja klicken Sie auf 'Datenbankeintrag erstellen'."];
@@ -317,6 +349,8 @@
 }
 
 -(void)createDatabaseEntry{
+    //clear if edit
+    [self deleteIfEditMode];
     //format Dates-String
     NSDateFormatter *theFormatter = [[NSDateFormatter alloc]init];
     theFormatter.dateFormat=@"EE, dd. MMMM yyyy";
@@ -357,5 +391,34 @@
     [self.activityIndicator stopAnimating];
     [self.activityIndicator setHidden:YES];
 }
+
+-(void)deleteEventWithName:(NSString*)eventName{
+    NSString *urlString =[[NSString alloc]initWithFormat:@"%@deleteEventData.php?name=%@&type=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"],eventName,self.entityName];
+    NSURL *url = [[NSURL alloc]initWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
+    NSURLConnection *theConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    NSLog(@"connection: %@",theConnection);
+    if(!theConnection){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Löschen fehlgeschlagen" message:@"Der Daten-Upload ist fehlgeschlagen! Bitte informieren Sie den Administrator dieser App!" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addAction:dismiss];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+-(void)deleteIfEditMode{
+    if(_editMode){
+        [self deleteEventWithName:_event.name];
+        BOOL inProgress=true;
+        while(inProgress){
+            inProgress=[_delegate checkForNewFileVersionOnServerByURL:[[[NSUserDefaults standardUserDefaults]stringForKey:@"serverPath" ]stringByAppendingString:@"event.json" ] withEntityName:@"Veranstaltung"];
+        }
+        //wait for server
+        [NSThread sleepForTimeInterval:3.0];
+    }
+}
+         
+         
 
 @end

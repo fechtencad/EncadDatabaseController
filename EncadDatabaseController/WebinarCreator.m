@@ -33,7 +33,6 @@ NSFetchedResultsControllerDelegate>{
 @property (nonatomic, strong) UIDatePicker *datePicker;
 @property (nonatomic, strong) UITextField *activeTextField;
 @property (weak, nonatomic) IBOutlet UIToolbar *accViewToolbar;
-@property BOOL nameIsValid;
 @property BOOL editMode;
 
 @end
@@ -82,8 +81,6 @@ NSFetchedResultsControllerDelegate>{
     _endTimeTF.inputAccessoryView=_accViewToolbar;
     _linkTF.inputAccessoryView=_accViewToolbar;
     
-    //set BOOL flag
-    self.nameIsValid=false;
     
     //Activity Indicator settings
     [self.activityIndicator setHidden:YES];
@@ -101,11 +98,9 @@ NSFetchedResultsControllerDelegate>{
 -(void)checkIfEditAndFillTFsAndConfigurePickers{
     if(_webinar){
         _editMode=true;
-        _nameIsValid=true;
         _titleTF.text=_webinar.name;
         _dateTF.text=[self convertDateString:_webinar.datum];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"EE, dd. MMMM yyyy"];
         [formatter setDateFormat:@"yyyy-MM-dd"];
         NSDate *date = [formatter dateFromString:_webinar.datum];
         [_datePicker setDate:date];
@@ -237,47 +232,32 @@ NSFetchedResultsControllerDelegate>{
 - (IBAction)checkInserts:(id)sender {
     [self.activityIndicator setHidden:NO];
     [self.activityIndicator startAnimating];
-    if(self.nameIsValid){
-        if(self.titleTF.text.length && self.dateTF.text.length && self.startTimeTF.text.length && self.endTimeTF.text.length && self.linkTF.text.length > 0){
-            NSString *message = [NSString stringWithFormat:@"\nVeranstaltungsname: %@\nDatum: %@\nStartzeit: %@\nEndzeit: %@ \nLink: %@\n\n",self.titleTF.text,self.dateTF.text,self.startTimeTF.text,self.endTimeTF.text,self.linkTF.text];
-            message = [message stringByAppendingString:@"Stimmen Ihre Angaben überein? Wenn ja klicken Sie auf 'Datenbankeintrag erstellen'."];
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Veranstaltung überprüfen" message:message preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Abbrechen" style:UIAlertActionStyleCancel handler:nil];
-            UIAlertAction *sendAction = [UIAlertAction actionWithTitle:@"Datenbankeintrag erstellen" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                [self createDatabaseEntry];
-            }];
-            
-            [alert addAction:cancelAction];
-            [alert addAction:sendAction];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
-        else{
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Fehlende Eingaben" message:@"Bitte füllen Sie alle benötigten Felder aus. Pflichtfelder sind mit einem * gekennzeichnet!" preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-            
-            
-            [alert addAction:cancelAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            [self.activityIndicator stopAnimating];
-            [self.activityIndicator setHidden:YES];
-            
-        }
+    if(self.titleTF.text.length && self.dateTF.text.length && self.startTimeTF.text.length && self.endTimeTF.text.length && self.linkTF.text.length > 0){
+        NSString *message = [NSString stringWithFormat:@"\nVeranstaltungsname: %@\nDatum: %@\nStartzeit: %@\nEndzeit: %@ \nLink: %@\n\n",self.titleTF.text,self.dateTF.text,self.startTimeTF.text,self.endTimeTF.text,self.linkTF.text];
+        message = [message stringByAppendingString:@"Stimmen Ihre Angaben überein? Wenn ja klicken Sie auf 'Datenbankeintrag erstellen'."];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Veranstaltung überprüfen" message:message preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Abbrechen" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *sendAction = [UIAlertAction actionWithTitle:@"Datenbankeintrag erstellen" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self createDatabaseEntry];
+        }];
+        
+        [alert addAction:cancelAction];
+        [alert addAction:sendAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     else{
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Name existiert bereits!" message:@"Es existiert bereits ein Event mit diesem Namen! Ein Event muss einen eindeutigen Namen besitzen, um in der Datenbank verifiziert zu werden!" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Fehlende Eingaben" message:@"Bitte füllen Sie alle benötigten Felder aus. Pflichtfelder sind mit einem * gekennzeichnet!" preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+        
         
         [alert addAction:cancelAction];
         [self presentViewController:alert animated:YES completion:nil];
         [self.activityIndicator stopAnimating];
         [self.activityIndicator setHidden:YES];
+        
     }
-
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -329,6 +309,8 @@ NSFetchedResultsControllerDelegate>{
         while(inProgress){
             inProgress=[_delegate checkForNewFileVersionOnServerByURL:[[[NSUserDefaults standardUserDefaults]stringForKey:@"serverPath" ]stringByAppendingString:@"webinarWithID.json" ] withEntityName:@"Webinar"];
         }
+        //wait for server
+        [NSThread sleepForTimeInterval:3.0];
     }
 }
 

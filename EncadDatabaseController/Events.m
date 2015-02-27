@@ -154,6 +154,15 @@
 
 #pragma mark - Table view data source
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    Veranstaltung *event = [_fetchedResultController objectAtIndexPath:indexPath];
+    
+    EventCreator *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"eventCreator"];
+    vc.event=event;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return _fetchedResultController.sections.count;
 }
@@ -169,14 +178,10 @@
     EventCell *cell = [tableView dequeueReusableCellWithIdentifier:@"eventCell" forIndexPath:indexPath];
     Veranstaltung *event = [_fetchedResultController objectAtIndexPath:indexPath];
     cell.nameLabel.text=event.name;
-    cell.startDateLabel.text=event.anfangs_datum;
-    cell.endDateLabel.text=event.end_datum;
-    if([self.entityName isEqualToString:@"Veranstaltung"]){
-        cell.locationLabel.text=event.ort;
-    }
-    else{
-        cell.locationLabel.text=@"Webinar";
-    }
+    cell.startDateLabel.text=[[[@"von: " stringByAppendingString:event.anfangs_datum] stringByAppendingString:@"; "]stringByAppendingString:event.uhrzeit];
+    cell.endDateLabel.text=[@"bis: " stringByAppendingString:event.end_datum];
+    cell.locationLabel.text=event.ort;
+  
     
     return cell;
 }
