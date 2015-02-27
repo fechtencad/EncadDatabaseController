@@ -195,31 +195,6 @@ NSFetchedResultsControllerDelegate>{
     
 }
 
--(BOOL)checkIfNameIsUsedAndColorIfNot{
-    NSArray *fetchedData = [_fetchedResultController fetchedObjects];
-    for(Webinar *webinar in fetchedData){
-        if([webinar.name isEqualToString:self.titleTF.text]){
-            [self showWrongNameAlert];
-            self.titleTF.backgroundColor=[UIColor redColor];
-            return false;
-        }
-    }
-    if(self.titleTF.text.length > 0){
-        self.titleTF.backgroundColor = [UIColor greenColor];
-    }
-    return true;
-}
-
--(void)showWrongNameAlert{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Name existiert bereits" message:@"Es existiert bereits ein Event mit diesem Namen! Ein Event muss einen eindeutigen Namen besitzen, um in der Datenbank verifiziert zu werden!" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    [alert addAction:cancelAction];
-    [self presentViewController:alert animated:YES completion:nil];
-}
 
 #pragma mark - TextField Delegates
 
@@ -240,9 +215,6 @@ NSFetchedResultsControllerDelegate>{
     self.activeTextField = textField;
     if(textField == self.endTimeTF || textField == self.linkTF){
         [self pushViewDown];
-    }
-    if(textField == self.titleTF && !_editMode){
-        self.nameIsValid = [self checkIfNameIsUsedAndColorIfNot];
     }
 }
 
@@ -352,16 +324,16 @@ NSFetchedResultsControllerDelegate>{
 
 -(void)deleteIfEditMode{
     if(_editMode){
-        [self deleteEventWithName:_webinar.name];
+        [self deleteWebinarWithID:_webinar.id];
         BOOL inProgress=true;
         while(inProgress){
-            inProgress=[_delegate checkForNewFileVersionOnServerByURL:[[[NSUserDefaults standardUserDefaults]stringForKey:@"serverPath" ]stringByAppendingString:@"webinar.json" ] withEntityName:@"Webinar"];
+            inProgress=[_delegate checkForNewFileVersionOnServerByURL:[[[NSUserDefaults standardUserDefaults]stringForKey:@"serverPath" ]stringByAppendingString:@"webinarWithID.json" ] withEntityName:@"Webinar"];
         }
     }
 }
 
--(void)deleteEventWithName:(NSString*)eventName{
-    NSString *urlString =[[NSString alloc]initWithFormat:@"%@deleteEventData.php?name=%@&type=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"],eventName,@"Webinar"];
+-(void)deleteWebinarWithID:(NSString*)ID{
+    NSString *urlString =[[NSString alloc]initWithFormat:@"%@deleteWebinarData.php?id=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"],ID];
     NSURL *url = [[NSURL alloc]initWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
     NSURLConnection *theConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
@@ -369,6 +341,12 @@ NSFetchedResultsControllerDelegate>{
     NSLog(@"connection: %@",theConnection);
     if(!theConnection){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Löschen fehlgeschlagen" message:@"Der Daten-Upload ist fehlgeschlagen! Bitte informieren Sie den Administrator dieser App!" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addAction:dismiss];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Löschen erfolgreich" message:@"Löschen war erfolgreich!" preferredStyle:UIAlertControllerStyleAlert];
         
         [alert addAction:dismiss];
         [self presentViewController:alert animated:YES completion:nil];

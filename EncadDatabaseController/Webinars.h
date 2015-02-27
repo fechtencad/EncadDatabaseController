@@ -12,4 +12,6 @@
 
 -(void)reloadData;
 
+-(void)deleteWebinarWithID:(NSString*)ID;
+
 @end

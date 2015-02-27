@@ -12,9 +12,9 @@
 		3A4A660F1A6D663C006D7097 /* launch1136blurbot.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4A660E1A6D663C006D7097 /* launch1136blurbot.png */; };
 		3A4A66111A6D66FF006D7097 /* launch2208.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4A66101A6D66FF006D7097 /* launch2208.png */; };
 		3A4F4A1C1A972F2300ECAD30 /* WebinarCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4F4A1B1A972F2300ECAD30 /* WebinarCreator.m */; };
-		3A64E7861A963BEE0007F79E /* Webinar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E7851A963BEE0007F79E /* Webinar.m */; };
 		3A64E7891A9640080007F79E /* Webinars.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E7881A9640080007F79E /* Webinars.m */; };
 		3A64E78C1A96401E0007F79E /* WebinarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A64E78B1A96401E0007F79E /* WebinarCell.m */; };
+		3A71827E1AA06C4800F09F28 /* Webinar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A71827D1AA06C4800F09F28 /* Webinar.m */; };
 		3A7741051A64234500F0EFAC /* Auditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7741041A64234500F0EFAC /* Auditions.m */; };
 		3A77410B1A64316900F0EFAC /* AuditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A77410A1A64316900F0EFAC /* AuditionCell.m */; };
 		3A7BF2711A67BC83004F65F5 /* Veranstaltung.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7BF2701A67BC83004F65F5 /* Veranstaltung.m */; };
@@ -58,12 +58,12 @@
 		3A4F4A1B1A972F2300ECAD30 /* WebinarCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebinarCreator.m; sourceTree = "<group>"; };
 		3A63B93C1A95E30D00DEC141 /* encad-DBC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "encad-DBC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A63B93D1A95E30D00DEC141 /* EncadDatabaseControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EncadDatabaseControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A64E7841A963BEE0007F79E /* Webinar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Webinar.h; sourceTree = "<group>"; };
-		3A64E7851A963BEE0007F79E /* Webinar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Webinar.m; sourceTree = "<group>"; };
 		3A64E7871A9640080007F79E /* Webinars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Webinars.h; sourceTree = "<group>"; };
 		3A64E7881A9640080007F79E /* Webinars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Webinars.m; sourceTree = "<group>"; };
 		3A64E78A1A96401E0007F79E /* WebinarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebinarCell.h; sourceTree = "<group>"; };
 		3A64E78B1A96401E0007F79E /* WebinarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebinarCell.m; sourceTree = "<group>"; };
+		3A71827C1AA06C4800F09F28 /* Webinar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Webinar.h; sourceTree = "<group>"; };
+		3A71827D1AA06C4800F09F28 /* Webinar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Webinar.m; sourceTree = "<group>"; };
 		3A7741031A64234500F0EFAC /* Auditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Auditions.h; sourceTree = "<group>"; };
 		3A7741041A64234500F0EFAC /* Auditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Auditions.m; sourceTree = "<group>"; };
 		3A7741091A64316900F0EFAC /* AuditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuditionCell.h; sourceTree = "<group>"; };
@@ -221,8 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				3AA7B6301A5E94FF00F11E71 /* Model.xcdatamodeld */,
-				3A64E7841A963BEE0007F79E /* Webinar.h */,
-				3A64E7851A963BEE0007F79E /* Webinar.m */,
+				3A71827C1AA06C4800F09F28 /* Webinar.h */,
+				3A71827D1AA06C4800F09F28 /* Webinar.m */,
 				3AFD51F81A652ED800F3D14D /* Schulungstermin.h */,
 				3AFD51F91A652ED800F3D14D /* Schulungstermin.m */,
 				3AA7B6331A5E96D600F11E71 /* Schulung.h */,
@@ -340,6 +340,7 @@
 			files = (
 				3A7BF2711A67BC83004F65F5 /* Veranstaltung.m in Sources */,
 				3AA7B62B1A5E7A5B00F11E71 /* TaskCell.m in Sources */,
+				3A71827E1AA06C4800F09F28 /* Webinar.m in Sources */,
 				3A7BF2841A67DA19004F65F5 /* EventCreator.m in Sources */,
 				3AA7B5FE1A5E717900F11E71 /* AppDelegate.m in Sources */,
 				3A64E7891A9640080007F79E /* Webinars.m in Sources */,
@@ -353,7 +354,6 @@
 				3A7BF2811A67C5AB004F65F5 /* EventCell.m in Sources */,
 				3A4F4A1C1A972F2300ECAD30 /* WebinarCreator.m in Sources */,
 				3A7BF2741A67BE8D004F65F5 /* Events.m in Sources */,
-				3A64E7861A963BEE0007F79E /* Webinar.m in Sources */,
 				3A7741051A64234500F0EFAC /* Auditions.m in Sources */,
 				3AA7B6321A5E94FF00F11E71 /* Model.xcdatamodeld in Sources */,
 				3AFD51FA1A652ED800F3D14D /* Schulungstermin.m in Sources */,

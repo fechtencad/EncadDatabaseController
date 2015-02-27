@@ -74,11 +74,13 @@
 }
 
 -(void)runWebinarScripts{
-    NSString *jsonString = [[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"]  stringByAppendingString:@"webinar.json"];
-    NSString *phpString = [[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"]  stringByAppendingString:@"webinarCreator.php"];
+    NSString *jsonString = [[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"]  stringByAppendingString:@"webinarWithID.json"];
+    NSString *phpString = [[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"]  stringByAppendingString:@"webinarIDCreator.php"];
+    NSString *phpSecondString = [[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"]  stringByAppendingString:@"webinarCreator.php"];
     NSString *entityName = @"Webinar";
     
     [self runScript:phpString ];
+    [self runScript:phpSecondString];
     [self initDataDownloadForURLString:jsonString forEntityName:entityName checkVersion:NO];
 }
 
@@ -108,10 +110,12 @@
 }
 
 -(void)runWebinarScriptsWithWait{
-    NSString *jsonString = [[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"]  stringByAppendingString:@"webinar.json"];
-    NSString *phpString = [[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"]  stringByAppendingString:@"webinarCreator.php"];
+    NSString *jsonString = [[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"]  stringByAppendingString:@"webinarWithID.json"];
+    NSString *phpString = [[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"]  stringByAppendingString:@"webinarIDCreator.php"];
+    NSString *phpSecondString = [[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"]  stringByAppendingString:@"webinarCreator.php"];
     NSString *entityName = @"Webinar";
     
+    [self runScript:phpSecondString];
     [self runScript:phpString WaitUntilFileIsCreated:jsonString];
     [self initDataDownloadForURLString:jsonString forEntityName:entityName checkVersion:NO];
 }

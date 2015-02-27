@@ -98,8 +98,9 @@
     return [formatter stringFromDate:convertedDate];
 }
 
--(void)deleteEventWithName:(NSString*)eventName{
-    NSString *urlString =[[NSString alloc]initWithFormat:@"%@deleteEventData.php?name=%@&type=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"],eventName,@"Webinar"];
+-(void)deleteWebinarWithID:(NSString*)ID{
+    NSString *urlString =[[NSString alloc]initWithFormat:@"%@deleteWebinarData.php?id=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"],ID];
+    NSLog(@"delteWeinarQuery: %@",urlString);
     NSURL *url = [[NSURL alloc]initWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
     NSURLConnection *theConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
@@ -191,7 +192,7 @@
     Webinar *webinar = [_fetchedResultController objectAtIndexPath:indexPath];
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self deleteEventWithName:webinar.name];
+        [self deleteWebinarWithID:webinar.id];
     }
 }
 

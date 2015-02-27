@@ -500,7 +500,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E8Z-Ks-Ni4" id="ruu-PE-kxf">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7c-yr-gPu">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="l7c-yr-gPu">
                                             <rect key="frame" x="8" y="8" width="525" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="FII-EJ-dml"/>
@@ -549,6 +549,7 @@
                                         <constraint firstItem="2Gb-Id-tAR" firstAttribute="leading" secondItem="l7c-yr-gPu" secondAttribute="leading" id="MMt-Cc-NJj"/>
                                         <constraint firstItem="l7c-yr-gPu" firstAttribute="top" secondItem="ruu-PE-kxf" secondAttribute="topMargin" id="U40-Yp-ah2"/>
                                         <constraint firstItem="UUi-4n-3GR" firstAttribute="leading" secondItem="Rhe-Vv-hO4" secondAttribute="leading" id="dlk-dA-7ST"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="l7c-yr-gPu" secondAttribute="trailing" constant="-8" id="eBP-ok-VJs"/>
                                         <constraint firstItem="eoP-fO-lig" firstAttribute="top" secondItem="2Gb-Id-tAR" secondAttribute="bottom" constant="8" symbolic="YES" id="fDi-fe-NB6"/>
                                         <constraint firstItem="2Gb-Id-tAR" firstAttribute="trailing" secondItem="eoP-fO-lig" secondAttribute="trailing" id="hX6-hR-ppf"/>
                                         <constraint firstItem="l7c-yr-gPu" firstAttribute="trailing" secondItem="2Gb-Id-tAR" secondAttribute="trailing" id="iYG-Ro-HbZ"/>
