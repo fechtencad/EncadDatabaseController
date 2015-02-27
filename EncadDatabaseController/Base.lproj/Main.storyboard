@@ -78,7 +78,7 @@
         <!--Audition Creator-->
         <scene sceneID="Ybi-YC-TYa">
             <objects>
-                <viewController id="ReC-R2-IBz" customClass="AuditionCreator" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="auditionCreator" id="ReC-R2-IBz" customClass="AuditionCreator" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vI7-nd-Upl"/>
                         <viewControllerLayoutGuide type="bottom" id="wzh-BK-4e9"/>
@@ -98,6 +98,7 @@
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wird automatisch gefüllt" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GcF-gs-7Hw" userLabel="enddatum-textfield">
                                 <rect key="frame" x="16" y="306" width="568" height="30"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="widthClass=compact" misplaced="YES">
@@ -259,7 +260,7 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="1101" y="-967"/>
+            <point key="canvasLocation" x="1517" y="-947"/>
         </scene>
         <!--Tasks-->
         <scene sceneID="DH3-9A-dUK">

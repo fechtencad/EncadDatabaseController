@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Auditions.h"
+#import "Schulungstermin.h"
 
 @interface AuditionCreator : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic, weak) Auditions *auditionsController;
+
+@property (nonatomic, strong) Schulungstermin *audition;
 
 @end

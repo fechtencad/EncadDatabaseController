@@ -227,12 +227,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    Schulungstermin *schulung = [_fetchedResultController objectAtIndexPath:indexPath];
-    NSString *msg = [NSString stringWithFormat:@"ID: %@\r\nName: %@\r\nDatum: %@\r\nDauer: %@ Tage\r\nOrt: %@\r\n",schulung.id, schulung.schulungs_name,[self convertDateString:schulung.datum],schulung.dauer, schulung.orts_name];
-    UIAlertController *informer = [UIAlertController alertControllerWithTitle:@"Details" message:msg preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-    [informer addAction:ok];
-    [self presentViewController:informer animated:YES completion:nil];
+    Schulungstermin *audition = [_fetchedResultController objectAtIndexPath:indexPath];
+    AuditionCreator *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"auditionCreator"];
+    vc.audition=audition;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

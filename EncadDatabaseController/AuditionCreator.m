@@ -31,6 +31,8 @@
 @property (nonatomic, strong) UITextField *activeTextField;
 @property (nonatomic, strong) UIPickerView *picker;
 @property (nonatomic, strong) UIDatePicker *datePicker;
+@property BOOL editMode;
+@property NSInteger daysToAddInEditMode;
 
 
 - (IBAction)cancelPicker:(id)sender;
@@ -75,6 +77,58 @@
     
     [self.activityIndicator setHidden:YES];
     [self.activityIndicator setColor:[UIColor purpleColor]];
+    
+    //set bool flag
+    _editMode=false;
+    
+    //check for edit mode
+    [self checkForEditModeAndFillTFs];
+}
+
+-(void)checkForEditModeAndFillTFs{
+    if(_audition){
+        _editMode=true;
+        _auditTextField.text=_audition.schulungs_name;
+        _auditTextField.enabled=false;
+        _dateTextField.text = [self convertDateString:_audition.datum];
+        _endDateTextField.text= [self convertDateString:_audition.datum WithDaysToAdd:[_audition.dauer integerValue]];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *startDate = [formatter dateFromString:_audition.datum];
+        [_datePicker setDate:startDate];
+        
+        _daysToAddInEditMode=[_audition.dauer integerValue];
+        
+        if([_audition.orts_name isEqualToString:@"Augsburg"]){
+            [_citySegmentControll setSelectedSegmentIndex:0];
+        }
+        else{
+            [_citySegmentControll setSelectedSegmentIndex:1];
+        }
+    }
+}
+
+-(NSString*)convertDateString:(NSString*)dateString{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *convertedDate= [formatter dateFromString:dateString];
+    [formatter setDateFormat:@"EE, dd. MMMM yyyy"];
+    return [formatter stringFromDate:convertedDate];
+}
+
+-(NSString*)convertDateString:(NSString*)dateString WithDaysToAdd:(long)days{
+    days-=1;
+    NSDateFormatter *theFormatter = [[NSDateFormatter alloc]init];
+    [theFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *startDate = [theFormatter dateFromString:dateString];
+    NSDate *endDate = startDate;
+    if(days>0){
+        endDate = [startDate dateByAddingTimeInterval:60*60*24*days];
+    }
+    [theFormatter setDateFormat:@"EE, dd. MMMM yyyy"];
+    NSString *convertedDateString = [theFormatter stringFromDate:endDate];
+    return convertedDateString;
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -139,7 +193,13 @@
 
 -(void)checkForCompletion{
     if(self.auditTextField.text.length && self.dateTextField.text.length >0){
-        long daysToAdd = [self.selectedSchulung.dauer integerValue];
+        long daysToAdd=0;
+        if(_editMode){
+            daysToAdd = _daysToAddInEditMode;
+        }
+        else{
+            daysToAdd = [self.selectedSchulung.dauer integerValue];
+        }
         daysToAdd-=1;
         NSDate *endDate = [self.selectedDate dateByAddingTimeInterval:60*60*24*daysToAdd];
         NSDateFormatter *theFormatter = [[NSDateFormatter alloc]init];
@@ -235,6 +295,9 @@
 
 
 -(void)createDatabaseEntry{
+    if(_editMode){
+        [self deleteIfEditMode];
+    }
     NSDateFormatter *theFormatter = [[NSDateFormatter alloc]init];
     theFormatter.dateFormat=@"EE, dd. MMMM yyyy";
     NSDate *endDate = [theFormatter dateFromString:self.dateTextField.text];
@@ -291,6 +354,34 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
+}
+
+-(void)deleteAuditionWithID:(NSString*)ID{
+    long deleteID = [ID integerValue];
+    NSString *urlString =[[NSString alloc]initWithFormat:@"%@deleteAuditData.php?id=%ld",[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"] ,deleteID];
+    NSURL *url = [[NSURL alloc]initWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
+    NSURLConnection *theConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    NSLog(@"connection: %@",theConnection);
+    if(!theConnection){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Löschen fehlgeschlagen" message:@"Der Daten-Upload ist fehlgeschlagen! Bitte informieren Sie den Administrator dieser App!" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addAction:dismiss];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+-(void)deleteIfEditMode{
+    if(_editMode){
+        [self deleteAuditionWithID:_audition.id];
+        BOOL inProgress=true;
+        while(inProgress){
+            inProgress=[_delegate checkForNewFileVersionOnServerByURL:[[[NSUserDefaults standardUserDefaults]stringForKey:@"serverPath" ]stringByAppendingString:@"allAudits.json" ] withEntityName:@"Schulungstermin"];
+        }
+        //wait for server
+        [NSThread sleepForTimeInterval:3.0];
+    }
 }
 
 
