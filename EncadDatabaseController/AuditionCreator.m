@@ -306,6 +306,7 @@
     
     NSString *urlString =[[NSString alloc]initWithFormat:@"%@insertAuditData.php?schulungs_name=%@&orts_name=%@&datum=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"serverPath"], self.auditTextField.text, [self.citySegmentControll titleForSegmentAtIndex:self.citySegmentControll.selectedSegmentIndex],formatedEndDate];
     NSURL *url = [[NSURL alloc]initWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+    NSLog(@"HTTP_POST: %@", urlString);
     
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
     NSURLResponse *response;
